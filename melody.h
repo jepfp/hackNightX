@@ -19,7 +19,39 @@ short MELODY_DUMMY[] = {
   NOTE_A4, 500, 600
 };
 
+// Jungi Schwän ond Äntli
 short YOUR_MELODY[] = {
-  /* TODO your melody */
+  NOTE_C4, 250, 10,
+  NOTE_D4, 250, 10,
+  NOTE_E4, 250, 10,
+  NOTE_F4, 250, 10,
+  NOTE_G4, 500, 10,
+  NOTE_G4, 500, 10,
+  
+  NOTE_A4, 250, 10,
+  NOTE_A4, 250, 10,
+  NOTE_A4, 250, 10,
+  NOTE_A4, 250, 10,
+  NOTE_G4, 1000, 10,
+  
+  NOTE_A4, 250, 10,
+  NOTE_A4, 250, 10,
+  NOTE_A4, 250, 10,
+  NOTE_A4, 250, 10,
+  NOTE_G4, 1000, 10,
+  
+  NOTE_F4, 250, 10,
+  NOTE_F4, 250, 10,
+  NOTE_F4, 250, 10,
+  NOTE_F4, 250, 10,
+  NOTE_E4, 500, 10,
+  NOTE_E4, 500, 10,
+  
+  NOTE_D4, 250, 10,
+  NOTE_D4, 250, 10,
+  NOTE_D4, 250, 10,
+  NOTE_D4, 250, 10,
+  NOTE_C4, 1000, 10
+  
 };
 // ------------------------  END music  ------------------------
