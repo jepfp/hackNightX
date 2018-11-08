@@ -229,6 +229,15 @@ void playMusic(){
    *  This method will be called in the main loop about once per millisecond
    *  Don't use any delays, or bot cannot balance!!!
    */
+   if (lastMusicTone == -1 || lastMusicTime + balancing_melody[lastMusicTone+1] + balancing_melody[lastMusicTone+2]  < currentTime) {
+		if (lastMusicTone >= balancing_melody_size){
+			lastMusicTone =-1;
+		}
+		++lastMusicTone;
+		tone(PIN_BUZZER, balancing_melody[lastMusicTone], balancing_melody[lastMusicTone+1]);
+		lastMusicTone = currentTime;
+   }
+   
   
   /* Variables to use:
    * lastMusicTone : last played tone index
@@ -243,4 +252,3 @@ void playMusic(){
    */
   
 }
-
