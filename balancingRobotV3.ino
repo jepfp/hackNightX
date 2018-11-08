@@ -7,6 +7,7 @@ const float STARTUP_ANGLE_TOLERANCE = 3.0; // the acceptable range of angle erro
 const float TIPOVER_ANGLE_OFFSET = 35; // stop motors if bot has tipped over
 const float MAX_ACCELLERATION = 100; // maximum acceleration in steps per second per loop iteration /* TODO optimize for faster acceleration or better stability [50:300]*/
 const float COMPLEMENTARY_FILTER_GYRO_COEFFICIENT = 0.999; // how much to use gyro value compared to accerelometer value
+const float ROTATION_SPEED = 0.3;
 // ---------------------  END custom settings  ---------------------
 
 // --------------------- START PID settings ---------------------
@@ -38,8 +39,8 @@ unsigned long currentTime = millis();
 boolean playMusicModeActive = false;
 int lastMusicTone = -1;
 unsigned long lastMusicTime = 0;
-int *balancing_melody = YOUR_MELODY; /* TODO your melody, see file melody.h */
-int balancing_melody_size = sizeof(YOUR_MELODY)/sizeof(int); /* TODO your melody */
+int *balancing_melody = YOUR_MELODY;
+int balancing_melody_size = sizeof(YOUR_MELODY)/sizeof(int);
 // ---------------------- END music variables  ----------------
 
 int count = 0;
@@ -147,8 +148,16 @@ void serialReadDirection() {
       case 'D': stop(); break;
       case 'S': stop(); break;
       case '0': stop(); break;
-      /* TODO more cases for speed control */
-      case '2': speed(); break; // set speed to 20% of maximum
+      case '1': speed(1); break;
+      case '2': speed(2); break; // set speed to 20% of maximum
+      case '3': speed(3); break;
+      case '4': speed(4); break;
+      case '5': speed(5); break;
+      case '6': speed(6); break;
+      case '7': speed(7); break;
+      case '8': speed(8); break;
+      case '9': speed(9); break;
+      
       default: validInput = false;
      }
 
@@ -176,35 +185,35 @@ void backward(){
 }
 
 void left(){
-  target_speed = 0; target_rotation_speed = -0.1; /* TODO optimize rotation speed */
+  target_speed = 0; target_rotation_speed = -ROTATION_SPEED; /* TODO optimize rotation speed */
 }
 
 void head_left(){
-  /* TODO target_head_rotation_speed */
+  target_head_rotation_speed = 1;
 }
 
 void right(){
-  target_speed = 0; target_rotation_speed = 0.1; /* TODO optimize rotation speed */
+  target_speed = 0; target_rotation_speed = ROTATION_SPEED; /* TODO optimize rotation speed */
 }
 
 void head_right(){
-  /* TODO target_head_rotation_speed */
+  target_head_rotation_speed = -1;
 }
 
 void forward_left(){
-  /* TODO */
+  target_speed = 0.5; target_rotation_speed = -ROTATION_SPEED;
 }
 
 void forward_right(){
-  /* TODO */
+  target_speed = 0; target_rotation_speed = ROTATION_SPEED;
 }
 
 void backward_left(){
-  /* TODO */
+  target_speed = -0.5; target_rotation_speed = -ROTATION_SPEED;
 }
 
 void backward_right(){
-  /* TODO */
+  target_speed = -0.5; target_rotation_speed = ROTATION_SPEED;
 }
 
 void stop(){
@@ -215,9 +224,9 @@ void head_stop(){
   target_speed = 0; target_head_rotation_speed = 0;
 }
 
-void speed(){
+void speed(int factor){
   /* TODO add support for multiple speed levels */
-  max_body_speed_factor = 2.0 * MAX_BODY_SPEED_FACTOR_LIMIT/10.0;
+  max_body_speed_factor = 2.0 * MAX_BODY_SPEED_FACTOR_LIMIT/10.0 * factor;
 }
 
 void horn(){
