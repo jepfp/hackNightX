@@ -38,8 +38,8 @@ unsigned long currentTime = millis();
 boolean playMusicModeActive = false;
 int lastMusicTone = -1;
 unsigned long lastMusicTime = 0;
-int *balancing_melody = MELODY_DUMMY; /* TODO your melody, see file melody.h */
-int balancing_melody_size = sizeof(MELODY_DUMMY)/sizeof(int); /* TODO your melody */
+int *balancing_melody = YOUR_MELODY; /* TODO your melody, see file melody.h */
+int balancing_melody_size = sizeof(YOUR_MELODY)/sizeof(int); /* TODO your melody */
 // ---------------------- END music variables  ----------------
 
 int count = 0;
